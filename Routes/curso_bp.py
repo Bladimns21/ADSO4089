@@ -21,4 +21,8 @@ def update(id):
 
 @curso_bp.route('/<int:id>', methods=['DELETE'])
 def delete(id):
+<<<<<<< HEAD
     return cursoController.delete(id)
+=======
+    return cursoController.delete(id)
+>>>>>>> 1ec947b02867a883f1941a1d1892d20cd71fe47b

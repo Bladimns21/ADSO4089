@@ -18,4 +18,8 @@ class Curso:
             "CUR_DURACION": self.__CUR_DURACION,
             "CUR_COSTO": self.__CUR_COSTO,
             "CUR_DESCRIPCION": self.__CUR_DESCRIPCION
+<<<<<<< HEAD
         }
+=======
+        }
+>>>>>>> 1ec947b02867a883f1941a1d1892d20cd71fe47b

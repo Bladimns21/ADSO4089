@@ -1,26 +1,26 @@
 from flask import request
-from Services.aprendizService import aprendizService
+from Services.personaService import personaService
 
-class aprendizController:
+class personaController:
 
     @staticmethod
     def get_all():
-        return aprendizService.get_all()
+        return personaService.get_all()
 
     @staticmethod
     def get_by_id(id):
-        return aprendizService.get_by_id(id)
+        return personaService.get_by_id(id)
 
     @staticmethod
     def add():
         data = request.get_json() or {}
-        return aprendizService.add(data)
+        return personaService.add(data)
 
     @staticmethod
     def update(id):
         data = request.get_json() or {}
-        return aprendizService.update(id, data)
+        return personaService.update(id, data)
 
     @staticmethod
     def delete(id):
-        return aprendizService.delete(id)
+        return personaService.delete(id)

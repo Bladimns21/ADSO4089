@@ -1,10 +1,10 @@
 from flask import current_app, jsonify
-from Models.Aprendiz import Aprendiz
+from Models.Instructor import Instructor
 
-class aprendizService:
+class instructorService:
     @staticmethod
     def get_all():
-        sql = "SELECT * FROM T_APRENDIZ"
+        sql = "SELECT * FROM T_INSTRUCTOR"
         c = current_app.mysql.connection.cursor()
         c.execute(sql)
         data = c.fetchall()
@@ -13,46 +13,46 @@ class aprendizService:
 
     @staticmethod
     def get_by_id(id):
-        sql = "SELECT * FROM T_APRENDIZ WHERE APR_ID = %s"
+        sql = "SELECT * FROM T_INSTRUCTOR WHERE INS_ID = %s"
         c = current_app.mysql.connection.cursor()
         c.execute(sql, (id,))
         data = c.fetchone()
         c.close()
-        return jsonify(data) if data else (jsonify({"error": "Aprendiz no encontrado"}), 404)
+        return jsonify(data) if data else (jsonify({"error": "Instructor no encontrado"}), 404)
 
     @staticmethod
     def add(data):
-        sql = """INSERT INTO T_APRENDIZ (APR_UUID, APR_FECHA_NAC, APR_PER_ID) 
+        sql = """INSERT INTO T_INSTRUCTOR (INS_UUID, INS_ESPECIALIDAD, INS_PER_ID) 
                  VALUES (%s, %s, %s)"""
         c = current_app.mysql.connection.cursor()
         c.execute(sql, (
-            data.get('APR_UUID'),
-            data.get('APR_FECHA_NAC'),
-            data.get('APR_PER_ID')
+            data.get('INS_UUID'),
+            data.get('INS_ESPECIALIDAD'),
+            data.get('INS_PER_ID')
         ))
         current_app.mysql.connection.commit()
         c.close()
-        return jsonify({"message": "Aprendiz agregado correctamente"}), 201
+        return jsonify({"message": "Instructor agregado correctamente"}), 201
 
     @staticmethod
     def update(id, data):
-        sql = """UPDATE T_APRENDIZ SET APR_FECHA_NAC=%s, APR_PER_ID=%s 
-                 WHERE APR_ID=%s"""
+        sql = """UPDATE T_INSTRUCTOR SET INS_ESPECIALIDAD=%s, INS_PER_ID=%s 
+                 WHERE INS_ID=%s"""
         c = current_app.mysql.connection.cursor()
         c.execute(sql, (
-            data.get('APR_FECHA_NAC'),
-            data.get('APR_PER_ID'),
+            data.get('INS_ESPECIALIDAD'),
+            data.get('INS_PER_ID'),
             id
         ))
         current_app.mysql.connection.commit()
         c.close()
-        return jsonify({"message": "Aprendiz actualizado correctamente"})
+        return jsonify({"message": "Instructor actualizado correctamente"})
 
     @staticmethod
     def delete(id):
-        sql = "DELETE FROM T_APRENDIZ WHERE APR_ID = %s"
+        sql = "DELETE FROM T_INSTRUCTOR WHERE INS_ID = %s"
         c = current_app.mysql.connection.cursor()
         c.execute(sql, (id,))
         current_app.mysql.connection.commit()
         c.close()
-        return jsonify({"message": "Aprendiz eliminado correctamente"})
+        return jsonify({"message": "Instructor eliminado correctamente"})

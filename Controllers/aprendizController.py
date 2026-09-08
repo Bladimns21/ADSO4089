@@ -1,11 +1,17 @@
+from flask import request
 from Services.aprendizService import aprendizService
-
 
 class aprendizController:
 
-    def show():
-        data = aprendizService.show()
+    @staticmethod
+    def get_all():
+        return aprendizService.get_all()
 
+    @staticmethod
+    def get_by_id(id):
+        return aprendizService.get_by_id(id)
 
-
-# cyflz16
+    @staticmethod
+    def add():
+        data = request.get_json() or {}
+        return aprendizService.add(data)
